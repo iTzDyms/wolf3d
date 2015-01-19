@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2015/01/19 17:36:08 by cheron           ###   ########.fr        #
+#    Updated: 2015/01/19 18:11:29 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,17 +41,20 @@ all: $(LIBFT) $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
+	@echo ""
 
 $(NAME): $(SDL2_PATH)/$(lSDL2) $(LIBFT) $(OBJ_PATH) $(POBJ)	
-	$(CC) -o $@ -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(POBJ)
+	@($(CC) -o $@ -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(POBJ))
+	@echo "\nLinking "$@
 
 clean:	
-	$(RM) $(POBJ)
+	@($(RM) $(POBJ))
+	@echo "\nCleaning object files in "$(NAME)"\n"
 	$(MAKE) $@ -C $(LIBFT_PATH)
 
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@echo "\nCleaning "$(NAME)"\n"
 	$(MAKE) $@ -C $(LIBFT_PATH)
 
