@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_createpdata.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/19 14:36:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/20 19:38:26 by cheron           ###   ########.fr       */
+/*   Created: 2015/01/20 14:51:58 by cheron            #+#    #+#             */
+/*   Updated: 2015/01/20 18:55:07 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
 #include <wolf3d.h>
+#include <stdlib.h>
 
-int	main(void)
+t_pdata	*ft_allocpdata(void)
 {
-	t_map	*map;
 	t_pdata	*pdata;
+	t_coord	*pcoord;
 
-	map = ft_allocmap();
-	pdata = ft_allocpdata();
-	set_player_pos(map, pdata->coord);
-	ft_freepdata(pdata);
-	pdata = NULL;
-	ft_freemap(map);
-	map = NULL;
-	return (1);
+	pdata = (t_pdata *)malloc(sizeof(t_pdata));
+	pcoord = ft_alloccoord();
+	pdata->coord = pcoord;
+	pdata->height = PLAYER_HEIGHT;
+	pdata->fov = FOV;
+	pdata->dir = PLAYER_VIEW_DIR;
+	return (pdata);
+}
+
+void	ft_freepdata(t_pdata *pdata)
+{
+	ft_freecoord(pdata->coord);
+	free(pdata);
 }

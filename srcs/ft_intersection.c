@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_intersection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/19 14:36:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/20 19:38:26 by cheron           ###   ########.fr       */
+/*   Created: 2015/01/20 18:56:56 by cheron            #+#    #+#             */
+/*   Updated: 2015/01/20 19:45:50 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <math.h>
 #include <wolf3d.h>
 
-int	main(void)
+int		inter_vertical(t_map *map, tpdata *pdata)
 {
-	t_map	*map;
-	t_pdata	*pdata;
+	return( vertical inter distance );
+}
 
-	map = ft_allocmap();
-	pdata = ft_allocpdata();
-	set_player_pos(map, pdata->coord);
-	ft_freepdata(pdata);
-	pdata = NULL;
-	ft_freemap(map);
-	map = NULL;
-	return (1);
+int		inter_horizontal(tmap *map, tpdata *pdata, alpha)
+{
+	int	ay;
+	int	ax;
+
+	ay = round(pdata->y / 64) * 64;
+	ay = ((pdata->dir > 0 && pdaa->dir < 180) ? ay - 1 : ay + 64);
+	ax = pdata->x + (pdata->y - ay) / (int)tan((double)alpha);
+	return( horizontale inter distance );
 }

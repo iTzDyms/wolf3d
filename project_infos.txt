@@ -1,0 +1,27 @@
+		  y
+		  |
+axe : x-------------->
+		  |
+		  |
+		  |
+		  |
+		  v
+		  		  90
+				   |
+				   |
+				   |
+				   |
+				   |
+	180 ----------------------- 0
+				   |
+				   |
+				   |
+				   |
+				   |
+				  270
+
+1. Walls are always at 90° angle with the floor.
+2. Walls are made of cubes that have the same size.
+3. Floor is always flat.
+
+each cube have the size of 64x64x64 units

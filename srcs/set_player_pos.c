@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_player_pos.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/19 14:36:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/20 19:38:26 by cheron           ###   ########.fr       */
+/*   Created: 2015/01/20 13:38:26 by cheron            #+#    #+#             */
+/*   Updated: 2015/01/20 18:29:11 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
 #include <wolf3d.h>
 
-int	main(void)
+void	set_player_pos(t_map *map, t_coord *pcoord)
 {
-	t_map	*map;
-	t_pdata	*pdata;
+	int		x;
+	int		y;
 
-	map = ft_allocmap();
-	pdata = ft_allocpdata();
-	set_player_pos(map, pdata->coord);
-	ft_freepdata(pdata);
-	pdata = NULL;
-	ft_freemap(map);
-	map = NULL;
-	return (1);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (map->map[y][x] == '2')
+			{
+				pcoord->y = y * 64 + 32;
+				pcoord->x = x * 64 + 32;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+	pcoord->x = 0;
+	pcoord->y = 0;
 }

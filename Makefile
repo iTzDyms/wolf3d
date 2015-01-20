@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2015/01/19 18:11:29 by cheron           ###   ########.fr        #
+#    Updated: 2015/01/20 16:51:39 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,7 +29,7 @@ NAME := wolf3d
 SDL2_PATH := ./SDL2/lib
 lSDL2 := libSDL2.a
 
-SRC := main.c test.c
+SRC := main.c ft_print_map.c set_player_pos.c ft_map.c ft_pdata.c ft_coord.c
 
 OBJ := $(SRC:.c=.o)
 POBJ = $(addprefix $(OBJ_PATH)/, $(OBJ))
