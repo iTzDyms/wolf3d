@@ -27,3 +27,7 @@
 *.i*86
 *.x86_64
 *.hex
+wolf3d
+
+#SDL2 stuff
+SDL2
