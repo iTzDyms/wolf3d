@@ -6,7 +6,7 @@
 #    By: cheron <cheron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/20 17:06:50 by cheron            #+#    #+#              #
-#    Updated: 2015/01/20 16:51:39 by cheron           ###   ########.fr        #
+#    Updated: 2015/01/23 15:34:49 by cheron           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,7 +17,8 @@ RM := rm -rf
 
 LIBFT_PATH := ./libft
 LIBFT_INCLUDES_PATH := ./libft/includes
-INCLUDES_PATH := ./includes
+WOLF3D_INCLUDES_PATH := ./includes
+SDL2_INCLUDES_PATH := ./SDL2/include/SDL2
 
 LDFLAGS := -lSDL2
 LIBFTFLAGS := -lft
@@ -29,7 +30,8 @@ NAME := wolf3d
 SDL2_PATH := ./SDL2/lib
 lSDL2 := libSDL2.a
 
-SRC := main.c ft_print_map.c set_player_pos.c ft_map.c ft_pdata.c ft_coord.c
+SRC := main.c ft_print_map.c set_player_pos.c ft_map.c ft_pdata.c ft_coord.c \
+	ft_SDL.c ft_intersection.c ft_proceed.c ft_screen.c ft_DrawRenderer.c
 
 OBJ := $(SRC:.c=.o)
 POBJ = $(addprefix $(OBJ_PATH)/, $(OBJ))
@@ -43,7 +45,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_PATH)
 	@echo ""
 
-$(NAME): $(SDL2_PATH)/$(lSDL2) $(LIBFT) $(OBJ_PATH) $(POBJ)	
+$(NAME): $(SDL2_PATH)/$(lSDL2) $(LIBFT) $(OBJ_PATH) $(POBJ)
 	@($(CC) -o $@ -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(POBJ))
 	@echo "\nLinking "$@
 
@@ -60,8 +62,8 @@ fclean: clean
 
 re: fclean all
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH)
-	$(CC) $(CFLAGS) $(OFLAGS) $(LDFLAGS) -c $< -o $@ -I $(INCLUDES_PATH) -I $(LIBFT_INCLUDES_PATH)
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(WOLF3D_INCLUDES_PATH)
+	$(CC) $(CFLAGS) $(OFLAGS) $(LDFLAGS) -c $< -o $@ -I $(WOLF3D_INCLUDES_PATH) -I $(LIBFT_INCLUDES_PATH) -I $(SDL2_INCLUDES_PATH)
 
 $(OBJ_PATH):
 	mkdir $(OBJ_PATH)

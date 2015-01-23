@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_screen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/19 14:36:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/23 14:47:40 by cheron           ###   ########.fr       */
+/*   Created: 2015/01/22 17:10:57 by cheron            #+#    #+#             */
+/*   Updated: 2015/01/23 13:37:51 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <SDL.h>
-#include <libft.h>
 #include <wolf3d.h>
+#include <stdlib.h>
 
-int	main(void)
+t_screen	*ft_allocscreen(void)
 {
-	t_map		*map;
-	t_pdata		*pdata;
 	t_screen	*screen;
 
-	map = ft_allocmap();
-	pdata = ft_allocpdata();
-	set_player_pos(map, pdata->coord);
-	screen = ft_allocscreen();
-	ft_proceed(screen, map, pdata);
-	SDL_DestroyWindow(screen->win);
-	SDL_Quit();
-	ft_freepdata(pdata);
-	pdata = NULL;
-	ft_freemap(map);
-	map = NULL;
-	return (0);
+	if (!(screen = (t_screen *)malloc(sizeof(t_screen))))
+		return(NULL);
+	screen->win = NULL;
+	screen->r = NULL;
+	screen->win = ft_createwin(W_TITLE, PROJ_HEIGHT, PROJ_WIDTH);
+	screen->r = SDL_CreateRenderer(screen->win, -1, 0);
+	return(screen);
+}
+
+void	ft_freescreen(t_screen *screen)
+{
+	free(screen);
 }
