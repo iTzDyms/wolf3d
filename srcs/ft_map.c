@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 14:46:55 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/20 18:16:58 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/26 16:34:00 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ t_map	*ft_allocmap(void)
 	char	*row1;
 	char	*row2;
 	char	*row3;
+	char	*row4;
 	char	**array;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	row0 = ft_strdup("11111");
 	row1 = ft_strdup("10001");
-	row2 = ft_strdup("12001");
-	row3 = ft_strdup("11111");
-	array = (char **)malloc(sizeof(char *) * 4);
+	row2 = ft_strdup("10201");
+	row3 = ft_strdup("10001");
+	row4 = ft_strdup("11111");
+	array = (char **)malloc(sizeof(char *) * 5);
 	array[0] = row0;
 	array[1] = row1;
 	array[2] = row2;
 	array[3] = row3;
+	array[4] = row4;
 	map->width = 5;
-	map->height = 4;
+	map->height = 5;
 	map->map = array;
 	return (map);
 }
