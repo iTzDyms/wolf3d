@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/26 16:29:53 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/29 13:20:52 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ double				inter_horizontal(t_map *map, t_pdata *pdata, double alpha);
 SDL_Window			*ft_createwin(char *title, int height, int width);
 void				ft_proceed(t_screen *screen, t_map *map, t_pdata *pdata);
 void				ft_DrawRenderer(t_pdata *pdat, t_map *map, SDL_Renderer *r);
+double				ft_mod(double a, double b);
 
 #endif
