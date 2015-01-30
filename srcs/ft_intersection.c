@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 18:56:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/27 18:08:55 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 14:20:08 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ double	ft_fisheye(double dir, double alpha)
 {
 	double	res;
 
-return(1);
-	res = cos(fmod(dir - alpha, 90) * M_PI / 180);
-	printf("%f\n",res);
+	return(1);
+	res = cos(((dir - alpha) * M_PI / 180));
+	if ( res == 0 )
+		res = 0.000001;
+	//printf("%f\n",res);
 	return(res);
 }
 double	ft_distance(double x1, double y1, double x2, double y2)
@@ -37,8 +39,8 @@ double	ft_distance(double x1, double y1, double x2, double y2)
 double	inter_vertical(t_map *map, t_pdata *pdata, double alpha)
 {
 	t_coord	a;
-	int		Ya;
-	int		Xa;
+	double	Ya;
+	double	Xa;
 
 	//ft_putendl("enter verti");
 	if (alpha == 270 || alpha == 90)
@@ -47,6 +49,8 @@ double	inter_vertical(t_map *map, t_pdata *pdata, double alpha)
 	a.x = ((alpha > 270 || alpha < 90) ? a.x + 64 : a.x -1);
 	Xa = ((alpha > 270 || alpha < 90) ? +64 : -64);
 	Ya = 64 * tan(alpha * M_PI / 180);
+	if ( alpha > 270)
+		Ya = -Ya;
 	a.y = pdata->coord->y + (pdata->coord->x - a.x) * tan(alpha * M_PI / 180);
 	//ft_putendl("before");
 	//ft_putendl(ft_itoa(map->height));
@@ -54,6 +58,10 @@ double	inter_vertical(t_map *map, t_pdata *pdata, double alpha)
 	//ft_putendl(ft_itoa(a.y / 64));
 	//ft_putendl(ft_itoa(a.x / 64));
 	//ft_putendl(ft_itoa(map->map[a.y/64][a.x/64]));
+//	ft_putstr("Yavvv ==> ");
+//	ft_putendl(ft_itoa(Ya));
+//	ft_putstr("Xavvv ==> ");
+//	ft_putendl(ft_itoa(Xa));
 	while ( map->height > a.y / 64 && map->width > a.x / 64 && a.y >= 0 && a.x >= 0)
 	{	
 	//	ft_putendl(ft_itoa(Xa));
@@ -107,8 +115,8 @@ double	inter_vertical(t_map *map, t_pdata *pdata, double alpha)
 double		inter_horizontal(t_map *map, t_pdata *pdata, double alpha)
 {
 	t_coord	a;
-	int		Ya;
-	int		Xa;
+	double	Ya;
+	double	Xa;
 
 	//ft_putendl("enter hori");
 	if (alpha == 0 || alpha == 180)
@@ -118,7 +126,13 @@ double		inter_horizontal(t_map *map, t_pdata *pdata, double alpha)
 	a.y = ((alpha < 180) ? a.y - 1 : a.y + 64);
 	Ya = ((alpha < 180) ? -64 : 64);
 	Xa = 64 / tan(alpha * M_PI / 180);
+	if (alpha > 270)
+		Xa = -Xa;
 	a.x = pdata->coord->x + (pdata->coord->y - a.y) / tan(alpha * M_PI / 180);
+//	ft_putstr("Yahhh ==> ");
+//	ft_putendl(ft_itoa(Ya));
+//	ft_putstr("Xahhh ==> ");
+//	ft_putendl(ft_itoa(Xa));
 	
 	//	ft_putstr("p.y ==> ");
 	//	ft_putendl(ft_itoa(pdata->coord->y));

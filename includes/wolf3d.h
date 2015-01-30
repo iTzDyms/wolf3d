@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/29 13:20:52 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/29 18:00:49 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # define FOV 60
 # define PLAYER_HEIGHT 32
-# define PROJ_HEIGHT 200
-# define PROJ_WIDTH 320
-# define PLAYER_VIEW_DIR 90
+# define PROJ_HEIGHT 768
+# define PROJ_WIDTH 1366
+# define PLAYER_VIEW_DIR 0
 # define W_TITLE "Wolf3D"
 # define DELAY 1000 / 60
 # define DELTA_ALPHA (double)FOV / (double)PROJ_WIDTH
@@ -46,10 +46,10 @@ typedef struct		s_coord
 typedef	struct		s_pdata
 {
 	t_coord			*coord;
-	int				height;
+//	int				height;
 	int				fov;
-	int				projdist;
-	int				wallh;
+//	int				projdist;
+//	int				wallh;
 	double			dir;
 }					t_pdata;
 
@@ -68,6 +68,6 @@ double				inter_horizontal(t_map *map, t_pdata *pdata, double alpha);
 SDL_Window			*ft_createwin(char *title, int height, int width);
 void				ft_proceed(t_screen *screen, t_map *map, t_pdata *pdata);
 void				ft_DrawRenderer(t_pdata *pdat, t_map *map, SDL_Renderer *r);
-double				ft_mod(double a, double b);
+double				ft_mod(double res);
 
 #endif
