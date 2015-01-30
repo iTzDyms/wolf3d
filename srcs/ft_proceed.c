@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/29 18:02:07 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 15:29:45 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	ft_proceedEvents(SDL_Event *event, int *quit, t_pdata *pdata)
 			|| event->key.keysym.sym == SDLK_ESCAPE)
 			*quit = 1;
 		else if (event->key.keysym.sym == SDLK_RIGHT)
-			pdata->dir = ft_mod(pdata->dir - val);
-		else if (event->key.keysym.sym == SDLK_LEFT)
 			pdata->dir = ft_mod(pdata->dir + val);
+		else if (event->key.keysym.sym == SDLK_LEFT)
+			pdata->dir = ft_mod(pdata->dir - val);
 		else if (event->key.keysym.sym == SDLK_DOWN)
 			ft_move(pdata, "BACK");
 		else if (event->key.keysym.sym == SDLK_UP)

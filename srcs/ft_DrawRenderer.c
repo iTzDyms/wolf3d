@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/23 13:50:18 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/30 14:24:08 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 17:03:43 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void		ft_DrawRenderer(t_pdata *pdata, t_map *map, SDL_Renderer *r)
 	ft_putendl("image;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;");
 	//ft_putstr("dir ::");
 	//ft_putendl(ft_itoa(pdata->dir));
-	while (i < PROJ_WIDTH)
+		while (i < PROJ_WIDTH)
 	{
-//		printf("alpha :: %f\n", alpha);
+		//alpha = pdata->dir + ( (i * ( FOV / PROJ_WIDTH ) ) - ( FOV / 2.0 ) );
+		//		printf("alpha :: %f\n", alpha);
 		dis1 = inter_horizontal( map, pdata, alpha );
 		//ft_putendl("hori ok");
 		dis2 = inter_vertical( map, pdata, alpha);
@@ -58,7 +59,12 @@ void		ft_DrawRenderer(t_pdata *pdata, t_map *map, SDL_Renderer *r)
 //				ft_putendl("dis2 error");
 				SDL_SetRenderDrawColor(r, 0, 255, 0, 255);
 				if (alpha < 180)
+				{
+					ft_putendl("!dis2  ::  bleu clair");
+					ft_putstr("alpha ==>");
+					printf("%f\n",alpha);
 					SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
+				}
 			}	
 		}
 		else
@@ -74,12 +80,19 @@ void		ft_DrawRenderer(t_pdata *pdata, t_map *map, SDL_Renderer *r)
 			{
 				lowdis = dis1;
 				SDL_SetRenderDrawColor(r, 0, 255, 0, 255);
-			if (alpha < 180)
+				if (alpha < 180)
+				{	
+					ft_putendl("dis2(vert) > dis1(hori) :: bleu clair");
+					ft_putstr("alpha ==>");
+					printf("%f\n",alpha);
 					SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
+					printf("dis1 :: %f\ndis2 ::  %f\n", dis1, dis2);
+				}
 			}	
 
 		}
-		//lowdis *= cos(((pdata->dir - alpha ) * M_PI / 180));;
+		lowdis *= cos(((pdata->dir - alpha) * M_PI / 180));;
+		//lowdis *= cos( M_PI / 180 * ((i) * (FOV / PROJ_WIDTH) - (FOV / 2.0)));
 		SDL_RenderDrawLine(r, i, lowdis / 2, i, PROJ_HEIGHT - lowdis / 2);
 		i++;
 		alpha = ft_mod(alpha - DELTA_ALPHA);

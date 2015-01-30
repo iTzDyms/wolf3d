@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 18:56:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/30 14:20:08 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 17:01:27 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ double	inter_vertical(t_map *map, t_pdata *pdata, double alpha)
 		return(-1);
 	a.x = floor(pdata->coord->x / 64) * 64;
 	a.x = ((alpha > 270 || alpha < 90) ? a.x + 64 : a.x -1);
+//	alpha = ((alpha > 270 || alpha < 90) ? alpha : alpha );
 	Xa = ((alpha > 270 || alpha < 90) ? +64 : -64);
-	Ya = 64 * tan(alpha * M_PI / 180);
-	if ( alpha > 270)
+	Ya = (int)(64 * tan(alpha * M_PI / 180));
+	if ( alpha > 270 || alpha < 90)
 		Ya = -Ya;
-	a.y = pdata->coord->y + (pdata->coord->x - a.x) * tan(alpha * M_PI / 180);
+	a.y = (int)(pdata->coord->y + (pdata->coord->x - a.x) * tan(alpha * M_PI / 180));
 	//ft_putendl("before");
 	//ft_putendl(ft_itoa(map->height));
 	//ft_putendl(ft_itoa(map->width));
@@ -125,11 +126,11 @@ double		inter_horizontal(t_map *map, t_pdata *pdata, double alpha)
 	//ft_putendl(ft_itoa(a.y));
 	a.y = ((alpha < 180) ? a.y - 1 : a.y + 64);
 	Ya = ((alpha < 180) ? -64 : 64);
-	Xa = 64 / tan(alpha * M_PI / 180);
-	if (alpha > 270)
+	Xa = (int)(64 / tan(alpha * M_PI / 180));
+	if (alpha > 180)
 		Xa = -Xa;
-	a.x = pdata->coord->x + (pdata->coord->y - a.y) / tan(alpha * M_PI / 180);
-//	ft_putstr("Yahhh ==> ");
+	a.x = (int)(pdata->coord->x + (pdata->coord->y - a.y) / tan(alpha * M_PI / 180));
+	//	ft_putstr("Yahhh ==> ");
 //	ft_putendl(ft_itoa(Ya));
 //	ft_putstr("Xahhh ==> ");
 //	ft_putendl(ft_itoa(Xa));

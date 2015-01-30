@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/29 18:00:49 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 14:53:43 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include <SDL.h>
 
-# define FOV 60
+# define FOV (double)60.0
 # define PLAYER_HEIGHT 32
 # define PROJ_HEIGHT 768
 # define PROJ_WIDTH 1366
-# define PLAYER_VIEW_DIR 0
+# define PLAYER_VIEW_DIR (double)0.0
 # define W_TITLE "Wolf3D"
 # define DELAY 1000 / 60
-# define DELTA_ALPHA (double)FOV / (double)PROJ_WIDTH
+# define DELTA_ALPHA FOV / (double)PROJ_WIDTH
 
 typedef	struct		s_screen
 {
