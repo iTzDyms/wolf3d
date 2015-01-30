@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:36:56 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/23 14:47:40 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 19:58:20 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,15 @@
 int	main(void)
 {
 	t_map		*map;
-	t_pdata		*pdata;
+	t_player	pdata;
 	t_screen	*screen;
 
 	map = ft_allocmap();
-	pdata = ft_allocpdata();
-	set_player_pos(map, pdata->coord);
+	pdata = ft_get_player(map);
 	screen = ft_allocscreen();
-	ft_proceed(screen, map, pdata);
+	ft_proceed(screen, map, &pdata);
 	SDL_DestroyWindow(screen->win);
 	SDL_Quit();
-	ft_freepdata(pdata);
-	pdata = NULL;
 	ft_freemap(map);
 	map = NULL;
 	return (0);

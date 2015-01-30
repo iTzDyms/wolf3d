@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/29 18:00:49 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 19:59:33 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # define PLAYER_HEIGHT 32
 # define PROJ_HEIGHT 768
 # define PROJ_WIDTH 1366
-# define PLAYER_VIEW_DIR 0
 # define W_TITLE "Wolf3D"
 # define DELAY 1000 / 60
 # define DELTA_ALPHA (double)FOV / (double)PROJ_WIDTH
+# define ROT 2.0
+# define SPEED 2.0
 
 typedef	struct		s_screen
 {
@@ -37,37 +38,50 @@ typedef	struct		s_map
 	char			**map;
 }					t_map;
 
+typedef struct		s_pos
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_pos;
+
 typedef struct		s_coord
 {
 	double			x;
 	double			y;
+	double			z;
 }					t_coord;
 
-typedef	struct		s_pdata
+typedef	struct		s_player
 {
-	t_coord			*coord;
-//	int				height;
-	int				fov;
-//	int				projdist;
-//	int				wallh;
-	double			dir;
-}					t_pdata;
+	int				mov;
+	int				rot;
+	t_coord			dir;
+	t_coord			coord;
+	t_coord			cam;
+}					t_player;
+
+typedef struct		s_ray
+{
+	double			dist;
+	t_coord			coord;
+	t_coord			delta;
+	t_coord			side;
+	t_pos			map;
+	t_pos			step;
+	int				where;
+}					t_ray;
 
 t_screen			*ft_allocscreen(void);
 void				ft_freescreen(t_screen *screen);
-t_coord				*ft_alloccoord(void);
-void				ft_freecoord(t_coord *coord);
 t_map				*ft_allocmap(void);
 void				ft_freemap(t_map *map);
-t_pdata				*ft_allocpdata(void);
-void				ft_freepdata(t_pdata *pdata);
 void				ft_print_map(t_map *map);
-void				set_player_pos(t_map *map, t_coord *pcoord);
-double				inter_vertical(t_map *map, t_pdata *pdata, double alpha);
-double				inter_horizontal(t_map *map, t_pdata *pdata, double alpha);
+t_player			ft_get_player(t_map *map);
+t_coord				set_player_pos(t_map *map);
 SDL_Window			*ft_createwin(char *title, int height, int width);
-void				ft_proceed(t_screen *screen, t_map *map, t_pdata *pdata);
-void				ft_DrawRenderer(t_pdata *pdat, t_map *map, SDL_Renderer *r);
-double				ft_mod(double res);
-
+void				ft_proceed(t_screen *screen, t_map *map, t_player *pdata);
+void				ft_DrawRenderer(t_player *player, t_map *map, SDL_Renderer *r);
+void				ft_move(t_player, SDL_Keysym sym, SDL_Keymod mod);
+void				ft_rotate(t_player, SDL_Keysym sym, SDL_Keymod mod);
 #endif

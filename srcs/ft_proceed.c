@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/29 18:02:07 by cheron           ###   ########.fr       */
+/*   Updated: 2015/01/30 19:52:40 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,31 @@
 #include <math.h>
 #include <wolf3d.h>
 
-void	ft_move(t_pdata *pdata, char *str)
+void	ft_proceedEvents(SDL_Event *event, int *quit, t_player *pdata)
 {
-	if (strcmp(str, "BACK") == 0)
-	{
-		pdata->coord->x -= (1 * cos(pdata->dir * M_PI / 180));
-		pdata->coord->y -= (1 * cos((pdata->dir + 90)* M_PI / 180));
-	}
-	else
-	{
-		pdata->coord->x += (1 * cos(pdata->dir * M_PI / 180));
-		pdata->coord->y += (1 * cos((pdata->dir + 90) * M_PI / 180));
-	}
-}
-void	ft_proceedEvents(SDL_Event *event, int *quit, t_pdata *pdata)
-{
-	double	val;
+	SDLKey	sym;
 
+	sym = event->key->keysym.sym;
 	while (SDL_PollEvent(event) != 0 )
 	{
-		val = (event->key.keysym.mod == KMOD_LSHIFT ? 3 : 1);
-		if (event->window.event == SDL_WINDOWEVENT_CLOSE
-			|| event->key.keysym.sym == SDLK_ESCAPE)
+		if (event->window.event == SDL_WINDOWEVENT_CLOSE || sym == SDLK_ESCAPE)
 			*quit = 1;
-		else if (event->key.keysym.sym == SDLK_RIGHT)
-			pdata->dir = ft_mod(pdata->dir - val);
-		else if (event->key.keysym.sym == SDLK_LEFT)
-			pdata->dir = ft_mod(pdata->dir + val);
-		else if (event->key.keysym.sym == SDLK_DOWN)
-			ft_move(pdata, "BACK");
-		else if (event->key.keysym.sym == SDLK_UP)
-			ft_move(pdata, "FORWARD");
+		else if (sym == SDLK_RIGHT || sym == SDLK_LEFT)
+			ft_rotate(pdata, sym, event->key.keysym.mod);
+		else if (sym == SDLK_DOWN || sym == SDLK_UP)
+			ft_move(pdata, sym, event->key.keysym.mod);
 	}
 }
+
 void	ft_render(SDL_Renderer *r, t_map *map, t_pdata *pdata)
 {
 	SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
-	SDL_RenderClear(r);
+	SDL_RenderClear(r);////////////////////////////care for renderclear
 	ft_DrawRenderer(pdata, map, r);
 	SDL_RenderPresent(r);
 }
 
-void	ft_proceed(t_screen *screen, t_map *map, t_pdata *pdata)
+void	ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 {
 	int			quit;
 	SDL_Event	event;
@@ -65,7 +48,6 @@ void	ft_proceed(t_screen *screen, t_map *map, t_pdata *pdata)
 	{
 		ft_render(screen->r, map, pdata);
 		SDL_Delay(DELAY);
-		//SDL_Delay(3000);
 		ft_proceedEvents(&event, &quit, pdata);
 	}
 }
