@@ -6,11 +6,10 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 14:51:58 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 16:51:16 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/02 18:20:22 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <wolf3d.h>
 
 t_player	ft_get_player(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 14:46:55 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 15:53:25 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/02 17:35:20 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ t_map	*ft_allocmap(void)
 	row1 = ft_strdup("11000000000011");
 	row2 = ft_strdup("10000000000001");
 	row3 = ft_strdup("10000000000001");
-	row4 = ft_strdup("10001111100001");
-	row5 = ft_strdup("10001000100001");
-	row6 = ft_strdup("10001020100001");
-	row7 = ft_strdup("10001000100001");
-	row8 = ft_strdup("10001111100001");
+	row4 = ft_strdup("10000000000001");
+	row5 = ft_strdup("10000000000001");
+	row6 = ft_strdup("10000020000001");
+	row7 = ft_strdup("10000000000001");
+	row8 = ft_strdup("10000000000001");
 	row9 = ft_strdup("10000000000001");
 	row10 = ft_strdup("10000000000001");
 	row11 = ft_strdup("10000000000001");

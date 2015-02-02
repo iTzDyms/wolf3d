@@ -6,11 +6,12 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/23 13:50:18 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 15:52:40 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/02 18:08:49 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <SDL.h>
+#include <math.h>
 #include <wolf3d.h>
 #include <stdio.h>////
 static	void	ft_set_draw_color(SDL_Renderer *r, t_ray ray)
@@ -31,7 +32,7 @@ static	void	ft_draw_render_line(int i, double perpwalldis, SDL_Renderer *r)
 	int	drawstart;
 	int	drawend;
 
-	lineheight = fabs((int)((double)PROJ_HEIGHT / perpwalldis));
+	lineheight = (int)fabs(((double)PROJ_HEIGHT / perpwalldis));
 	drawstart = -lineheight / 2 + PROJ_HEIGHT / 2;
 	if (drawstart < 0)
 		drawstart = 0;
@@ -50,7 +51,7 @@ void			ft_DrawRenderer(t_player *pdata, t_map *map, SDL_Renderer *r)
 	i = 0;
 	while (i < PROJ_WIDTH)
 	{
-		//printf("\ni :: %i\n", i);
+		printf("\ni :: %i\n", i);
 		ray = ft_get_ray(pdata, i);
 		ray = ft_dda(ray, map);
 		perpwalldis = ft_distance(ray);

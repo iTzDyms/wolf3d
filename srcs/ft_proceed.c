@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 17:09:57 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/02 18:13:56 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 	while (!quit)
 	{
 		ft_render(screen->r, map, pdata);
-		//SDL_Delay(DELAY);
-		SDL_WaitEvent(&event);
-		ft_proceedEvents(&event, &quit, pdata);
+		SDL_Delay(DELAY);
+		while (SDL_PollEvent(&event))
+			ft_proceedEvents(&event, &quit, pdata);
 	}
 }
 
