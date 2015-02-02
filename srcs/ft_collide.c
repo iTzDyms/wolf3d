@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_createpdata.c                                   :+:      :+:    :+:   */
+/*   ft_collide.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/20 14:51:58 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 16:51:16 by cheron           ###   ########.fr       */
+/*   Created: 2015/02/02 13:04:04 by cheron            #+#    #+#             */
+/*   Updated: 2015/02/02 14:39:37 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <wolf3d.h>
 
-t_player	ft_get_player(t_map *map)
+int	hit_wall(int col, int row, t_map *map)
 {
-	t_player	pdata;
-
-	pdata.mov = 0;
-	pdata.rot = 2;
-	pdata.dir.x = 1;
-	pdata.dir.y = 0;
-	pdata.coord = set_player_pos(map);
-	pdata.coord.z = 1;
-	pdata.cam.z = 1;
-	return (pdata);
+	if (col < 0 || row < 0 || col >= map->width || row >= map->height)
+	{
+		return (1);
+	}
+	else
+	{
+		return (map->map[row][col] == 1);
+	}
 }

@@ -6,48 +6,53 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/30 19:10:40 by cheron            #+#    #+#             */
-/*   Updated: 2015/01/30 19:47:45 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/02 16:45:17 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <SDL.h>
 #include <wolf3d.h>
-
-static void	ft_rotate_left(t_player *pdata, int speed)
+#include <stdio.h>////////
+static void	ft_rot_left(t_player *pdata, double speed)
 {
-	double	coordx;
+	double	dirx;
 	double	camx;
 	double	rot;
 
+	printf("\nrot left\n");
 	rot = ROT * speed;
-	coordx = pdata->coord.x;
+	dirx = pdata->dir.x;
 	camx = pdata->cam.x;
-	pdata->coord.x = pdata->coord.x * cos(-rot) - pdata->coord.y * sin(-rot);
-	pdata->coord.y = coordx * sin(-rot) + pdata->coord.y * cos(-rot);
+	pdata->dir.x = pdata->dir.x * cos(-rot) - pdata->dir.y * sin(-rot);
+	pdata->dir.y = dirx * sin(-rot) + pdata->dir.y * cos(-rot);
 	pdata->cam.x = pdata->cam.x * cos(-rot) - pdata->cam.y * sin(-rot);
 	pdata->cam.y = camx * sin(-rot) + pdata->cam.y * cos(-rot);
 }
 
-static void	ft_rot_right(t_player *pdata, int speed)
+static void	ft_rot_right(t_player *pdata, double speed)
 {
-	double	coordx;
+	double	dirx;
 	double	camx;
 	double	rot;
 
+	printf("\nrot right\n");
 	rot = ROT * speed;
-	coordx = pdata->coord.x;
+	dirx = pdata->dir.x;
 	camx = pdata->cam.x;
-	pdata->coord.x = pdata->coord.x * cos(rot) - pdata->coord.y * sin(rot);
-	pdata->coord.y = coordx * sin(rot) + pdata->coord.y * cos(rot);
+	pdata->dir.x = pdata->dir.x * cos(rot) - pdata->dir.y * sin(rot);
+	pdata->dir.y = dirx * sin(rot) + pdata->dir.y * cos(rot);
 	pdata->cam.x = pdata->cam.x * cos(rot) - pdata->cam.y * sin(rot);
 	pdata->cam.y = camx * sin(rot) + pdata->cam.y * cos(rot);
 }
 
-void	ft_rotate(t_player *pdata, SDLKey sym, SDLMod mod)
+void	ft_rotate(t_player *pdata, SDL_Keycode sym, SDL_Keycode mod)
 {
+	double	speed;
+
 	speed = (mod == SDLK_LSHIFT ? SPEED * 3 : SPEED );
-	if (sym == SDLK_LEFT && sym.bidule == KEY_RELEASE)
-		ft_rotate_left(pdata, speed);
+	if (sym == SDLK_LEFT)
+		ft_rot_left(pdata, speed);
 	else if (sym == SDLK_RIGHT)
-		ft_rotate_right(pdata, speed);
+		ft_rot_right(pdata, speed);
+	printf("dir.x :: %f\ndir.y :: %f\ncam.x :: %f\ncam.y :: %f\n", pdata->dir.x, pdata->dir.y, pdata->cam.x, pdata->cam.y);
 }

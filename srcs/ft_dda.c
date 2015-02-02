@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_createpdata.c                                   :+:      :+:    :+:   */
+/*   ft_dda.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/20 14:51:58 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 16:51:16 by cheron           ###   ########.fr       */
+/*   Created: 2015/02/02 12:54:25 by cheron            #+#    #+#             */
+/*   Updated: 2015/02/02 14:25:58 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include <wolf3d.h>
-
-t_player	ft_get_player(t_map *map)
+#include <libft.h>///////////
+t_ray	ft_dda(t_ray ray, t_map *map)
 {
-	t_player	pdata;
-
-	pdata.mov = 0;
-	pdata.rot = 2;
-	pdata.dir.x = 1;
-	pdata.dir.y = 0;
-	pdata.coord = set_player_pos(map);
-	pdata.coord.z = 1;
-	pdata.cam.z = 1;
-	return (pdata);
+	while (!hit_wall(ray.map.x, ray.map.y, map))
+	{
+		if (ray.side.x < ray.side.y)
+		{
+			ray.side.x += ray.delta.x;
+			ray.map.x += ray.step.x;
+			ray.where = 0;
+		}
+		else
+		{
+			ray.side.y += ray.delta.y;
+			ray.map.y += ray.step.y;
+			ray.where = 1;
+		}
+	}
+	return(ray);
 }
