@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 14:55:06 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 17:52:46 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,18 @@ static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 
 static	void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata)
 {
-	SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
-	SDL_RenderClear(r);////////////////////////////care for renderclear
+//	SDL_Rect	rect;
+
+//	rect.x = 0;
+//	rect.y = PROJ_HEIGHT / 2;
+//	rect.w = PROJ_WIDTH;
+//	rect.h = PROJ_HEIGHT / 2;
+	SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
+	ft_draw_rectangle(r, 0, PROJ_WIDTH - 1, 0, PROJ_HEIGHT / 2 - 1);
+//	SDL_RenderClear(r);
+	SDL_SetRenderDrawColor(r, 81, 86, 90, 255);
+	ft_draw_rectangle(r, 0, PROJ_WIDTH - 1, PROJ_HEIGHT / 2 , PROJ_HEIGHT - 1);	
+//	SDL_RenderFillRect(r, &rect);
 	ft_draw_renderer(pdata, map, r);
 	SDL_RenderPresent(r);
 }

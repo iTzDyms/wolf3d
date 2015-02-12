@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 14:05:20 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 15:50:23 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 16:26:47 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,22 @@ SDL_Window		*ft_createwin(char *title, int height, int width)
 		exit(1);
 	}
 	return (win);
+}
+
+void		ft_draw_line(SDL_Renderer *r, int col, int start, int end)
+{
+	while (start <= end)
+	{
+		SDL_RenderDrawPoint(r, col, start);
+		start++;
+	}
+}
+
+void		ft_draw_rectangle(SDL_Renderer *r, int xa, int xb, int ya, int yb)
+{
+	while (xa <= xb)
+	{
+		ft_draw_line(r, xa, ya, yb);
+		xa++;
+	}
 }
