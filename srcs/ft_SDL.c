@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 14:05:20 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 14:45:26 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:54:25 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <libft.h>
 
-static	void	ft_sdl_initi(void)
+static	void	ft_sdl_init(void)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 	{
@@ -28,7 +28,7 @@ SDL_Window		*ft_createwin(char *title, int height, int width)
 {
 	SDL_Window *win;
 
-	ft_sdl_init(void);
+	ft_sdl_init();
 	win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (win == NULL)

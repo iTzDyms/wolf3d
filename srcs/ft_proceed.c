@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 14:46:10 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:55:06 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata)
 {
 	SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
 	SDL_RenderClear(r);////////////////////////////care for renderclear
-	ft_DrawRenderer(pdata, map, r);
+	ft_draw_renderer(pdata, map, r);
 	SDL_RenderPresent(r);
 }
 
@@ -49,6 +49,6 @@ void			ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 		ft_render(screen->r, map, pdata);
 		SDL_Delay(DELAY);
 		while (SDL_PollEvent(&event))
-			ft_proceedEvents(&event, &quit, pdata);
+			ft_proceed_events(&event, &quit, pdata);
 	}
 }
