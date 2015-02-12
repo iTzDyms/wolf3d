@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 14:05:20 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 15:28:06 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 15:34:19 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ SDL_Window		*ft_createwin(char *title, int height, int width)
 
 	ft_sdl_init();
 	win = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
+			SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN);
 	if (win == NULL)
 	{
 		ft_putstr("Can't set video mode: ");
