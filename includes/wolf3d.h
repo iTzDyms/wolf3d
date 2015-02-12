@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 16:42:42 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:32:50 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ t_player			ft_get_player(t_map *map);
 t_coord				set_player_pos(t_map *map);
 SDL_Window			*ft_createwin(char *title, int height, int width);
 void				ft_proceed(t_screen *screen, t_map *map, t_player *pdata);
-void				ft_DrawRenderer(t_player *player, t_map *map, SDL_Renderer *r);
+void				ft_draw_renderer(t_player *player, t_map *map, SDL_Renderer *r);
 void				ft_move(t_player *pdata, SDL_Keycode sym, SDL_Keycode mod);
 void				ft_rotate(t_player *pdata, SDL_Keycode sym, SDL_Keycode mod);
 t_ray				ft_get_ray(t_player *pdata, int i);
 t_ray				ft_dda(t_ray ray, t_map *map);
 int					hit_wall(int col, int row, t_map *map);
 double				ft_distance(t_ray ray);
+void				ft_set_draw_color(SDL_Renderer *r, t_ray ray);
+
 #endif

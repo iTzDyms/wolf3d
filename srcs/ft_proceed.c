@@ -6,21 +6,21 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 16:33:52 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 18:13:56 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:46:10 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <SDL.h>
 #include <math.h>
 #include <wolf3d.h>
-#include <stdio.h>////
-void	ft_proceedEvents(SDL_Event *event, int *quit, t_player *pdata)
+
+static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 {
 	SDL_Keycode	sym;
 
 	sym = event->key.keysym.sym;
 	if (event->window.event == SDL_WINDOWEVENT_CLOSE || sym == SDLK_ESCAPE)
-			*quit = 1;
+		*quit = 1;
 	else if (event->type == SDL_KEYDOWN)
 	{
 		if (sym == SDLK_RIGHT || sym == SDLK_LEFT)
@@ -30,7 +30,7 @@ void	ft_proceedEvents(SDL_Event *event, int *quit, t_player *pdata)
 	}
 }
 
-void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata)
+static	void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata)
 {
 	SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
 	SDL_RenderClear(r);////////////////////////////care for renderclear
@@ -38,7 +38,7 @@ void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata)
 	SDL_RenderPresent(r);
 }
 
-void	ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
+void			ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 {
 	int			quit;
 	SDL_Event	event;
@@ -52,5 +52,3 @@ void	ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 			ft_proceedEvents(&event, &quit, pdata);
 	}
 }
-
-

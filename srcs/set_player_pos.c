@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 13:38:26 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/02 15:03:54 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/12 14:41:46 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ t_coord		set_player_pos(t_map *map)
 			{
 				pcoord.y = y + 0.5;
 				pcoord.x = x + 0.5;
-				return(pcoord);
+				return (pcoord);
 			}
 			x++;
 		}
 		y++;
 	}
 	ft_fatal("could not find original player coordinates.");
-	return(pcoord);
+	return (pcoord);
 }
