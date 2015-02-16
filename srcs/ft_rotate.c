@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/30 19:10:40 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 16:59:08 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/16 12:32:42 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_rot_right(t_player *pdata, double speed)
 	double	ocamx;
 	double	rot;
 
-	rot = ROT * speed / 10;
+	rot = ROT * speed / 20;
 	odirx = pdata->dir.x;
 	ocamx = pdata->cam.x;
 	pdata->dir.x = pdata->dir.x * cos(rot) - pdata->dir.y * sin(rot);
@@ -35,7 +35,7 @@ static void	ft_rot_left(t_player *pdata, double speed)
 	double	ocamx;
 	double	rot;
 
-	rot = ROT * speed / 10;
+	rot = ROT * speed / 20;
 	odirx = pdata->dir.x;
 	ocamx = pdata->cam.x;
 	pdata->dir.x = pdata->dir.x * cos(-rot) - pdata->dir.y * sin(-rot);

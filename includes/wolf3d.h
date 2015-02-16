@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 14:40:51 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 17:05:08 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/16 16:19:58 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef	struct		s_player
 
 typedef struct		s_ray
 {
-//	double			dist;
 	t_coord			dir;
 	t_coord			delta;
 	t_coord			side;
@@ -69,6 +68,12 @@ typedef struct		s_ray
 	t_pos			step;
 	int				where;
 }					t_ray;
+
+typedef	struct		s_text
+{
+	SDL_Texture		*sky;
+	SDL_Texture		*floor;
+}					t_text;
 
 t_screen			*ft_allocscreen(void);
 void				ft_freescreen(t_screen *screen);
@@ -87,6 +92,13 @@ t_ray				ft_dda(t_ray ray, t_map *map);
 int					hit_wall(int col, int row, t_map *map);
 double				ft_distance(t_ray ray);
 void				ft_set_draw_color(SDL_Renderer *r, t_ray ray);
-void				ft_draw_line(SDL_Renderer *r, int col, int start, int end);
+void				ft_draw_line(SDL_Renderer *r, int col, int start, int endl);
 void				ft_draw_rectangle(SDL_Renderer *r, int xa, int xb, int ya, int yb);
+void				ft_init_textures(SDL_Renderer *r, t_text *text);
+void				ft_apply_sky_text(SDL_Renderer *r, t_player *pdata, t_text text);
+void				ft_apply_floor_text(SDL_Renderer *r, t_player *pdata, t_text text);
+SDL_Surface			*ft_get_sky_surface(void);
+SDL_Surface			*ft_get_floor_surface(void);
+
+
 #endif

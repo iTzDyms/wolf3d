@@ -6,7 +6,7 @@
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/23 13:50:18 by cheron            #+#    #+#             */
-/*   Updated: 2015/02/12 17:18:56 by cheron           ###   ########.fr       */
+/*   Updated: 2015/02/16 13:12:37 by cheron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static	void	ft_draw_render_line(int i, double perpwalldis, SDL_Renderer *r)
 	if (drawend >= PROJ_HEIGHT)
 		drawend = PROJ_HEIGHT - 1;
 	ft_draw_line(r, i, drawstart, drawend);
+	//SDL_RenderDrawLine(r, i, drawstart, i, drawend);
 }
 
 void			ft_draw_renderer(t_player *pdata, t_map *map, SDL_Renderer *r)
