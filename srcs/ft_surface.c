@@ -15,36 +15,13 @@
 #include <libft.h>
 #include <stdio.h>
 
-static void		ft_color_surface(SDL_Surface *surface, int width, int height,
-								Uint32 pixel)
-{
-	Uint32	*pixels;
-	int		i;
-	int		j;
-
-	pixels = (Uint32 *)surface->pixels;
-	j = 0;
-	SDL_LockSurface(surface);
-	while (j < height)
-	{
-		i = 0;
-		while (i < width)
-		{
-			pixels[j * width + i] = pixel;
-			i++;
-		}
-		j++;
-	}
-	SDL_UnlockSurface(surface);
-}
-
-SDL_Surface		*ft_get_sky_surface(void)
+SDL_Surface		*ft_init_surface(void)
 {
 	SDL_Surface	*surface;
 
 	surface = SDL_CreateRGBSurface(0, 
 			PROJ_WIDTH,
-			PROJ_HEIGHT / 2,
+			PROJ_HEIGHT,
 			32,
 			0,
 			0,
@@ -52,41 +29,34 @@ SDL_Surface		*ft_get_sky_surface(void)
 			0);
 	if (surface == NULL)
 		ft_fatal("surface creation failed");
-	ft_color_surface(surface, PROJ_WIDTH, PROJ_HEIGHT / 2, (Uint32)0x38EBD5);
 	return (surface);
 }
 
-SDL_Surface		*ft_get_floor_surface(void)
+void		ft_surface_draw_verline(SDL_Surface *surface, int col,
+									int start, int end, Uint32 pixel)
 {
-	SDL_Surface	*surface;
+	Uint32	*pixels;
 
-	surface = SDL_CreateRGBSurface(0, 
-			PROJ_WIDTH,
-			PROJ_HEIGHT / 2,
-			32,
-			0,
-			0,
-			0,
-			0);
-	if (surface == NULL)
-		ft_fatal("surface creation failed");	
-	ft_color_surface(surface, PROJ_WIDTH, PROJ_HEIGHT / 2, (Uint32)0x66665D);
-	return (surface);
+	pixels = (Uint32 *)surface->pixels;
+	while (start < end)
+	{
+		pixels[(start * PROJ_WIDTH) + col] = pixel;
+		start++;
+	}
 }
 
-SDL_Surface		*ft_get_wall_text(void)
-{
-	SDL_Surface	*surface;
 
-	surface = SDL_CreateRGBSurface(0, 
-			PROJ_WIDTH,
-			PROJ_HEIGHT / 2,
-			32,
-			0,
-			0,
-			0,
-			0);
-	if (surface == NULL)
-		ft_fatal("surface creation failed");	
-	return (surface);
+void		ft_surface_draw_rect(SDL_Surface *surface, t_pos pos,
+								int width, int height, Uint32 pixel)
+{
+	int		i;
+	int		end;
+
+	end = pos.y + height;
+	i = 0;
+	while (i < width )
+	{
+		ft_surface_draw_verline(surface, pos.x + i, pos.y, end, pixel);
+		i++;
+	}
 }

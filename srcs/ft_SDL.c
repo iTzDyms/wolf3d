@@ -39,22 +39,3 @@ SDL_Window		*ft_createwin(char *title, int height, int width)
 	}
 	return (win);
 }
-
-void		ft_draw_line(SDL_Renderer *r, int col, int start, int end)
-{
-	SDL_Point point;
-
-	point.x = col;
-	point.y = start;
-	SDL_RenderDrawPoints(r, &point, 1);
-	if (start <= end)
-		return (ft_draw_line(r, col, start + 1, end));
-}
-
-void		ft_draw_rectangle(SDL_Renderer *r, int xa, int xb, int ya, int yb)
-{
-	ft_draw_line(r, xa, ya, yb);
-	if (xa <= xb)
-		return (ft_draw_rectangle(r, xa + 1, xb, ya, yb));
-}
-

@@ -32,9 +32,9 @@ SDL2_PATH := ./SDL2/lib
 lSDL2 := libSDL2.a
 
 SRC := main.c ft_print_map.c set_player_pos.c ft_map.c ft_pdata.c \
-	ft_sdl.c ft_proceed.c ft_screen.c ft_draw_renderer.c \
+	ft_sdl.c ft_proceed.c ft_screen.c \
 	ft_move.c ft_rotate.c ft_ray.c	ft_distance.c ft_dda.c \
-	ft_collide.c ft_set_color.c ft_texture.c ft_surface.c
+	ft_collide.c ft_get_color.c ft_surface.c ft_surface2.c
 
 OBJ := $(SRC:.c=.o)
 POBJ = $(addprefix $(OBJ_PATH)/, $(OBJ))

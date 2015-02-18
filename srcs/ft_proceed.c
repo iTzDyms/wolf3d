@@ -13,6 +13,7 @@
 #include <SDL.h>
 #include <math.h>
 #include <wolf3d.h>
+#include <libft.h>////////////
 
 static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 {
@@ -30,28 +31,29 @@ static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 	}
 }
 
-static	void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata,
-	   t_text text)
+static	void	ft_apply_surf_to_render(SDL_Renderer *r, SDL_Surface *surface)
 {
-	ft_apply_sky_text(r, pdata, text);
-	ft_apply_floor_text(r, pdata, text);
-//	ft_apply_wall_text(r, pdata, map, text);
-	ft_draw_renderer(pdata, map, r);
-	SDL_RenderPresent(r);
+	SDL_Texture *frame;
+
+	frame = SDL_CreateTextureFromSurface(r, surface);
+	SDL_RenderCopy(r, frame, NULL, NULL);	
 }
 
 void			ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 {
 	int			quit;
 	SDL_Event	event;
-	t_text		text;
+	SDL_Surface	*surface;
 
 	quit = 0;
-	ft_init_textures(screen->r, &text);
+	surface = ft_init_surface();
 	while (!quit)
 	{
-		ft_render(screen->r, map, pdata, text);
-		SDL_Delay(DELAY);
+		ft_draw_surface(map, pdata, surface);
+		ft_putendl("drew surface");
+		ft_apply_surf_to_render(screen->r, surface);
+		SDL_RenderPresent(screen->r);
+//		SDL_Delay(DELAY);
 		while (SDL_PollEvent(&event))
 			ft_proceed_events(&event, &quit, pdata);
 	}

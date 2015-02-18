@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_color.c                                     :+:      :+:    :+:   */
+/*   ft_get_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cheron <cheron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,14 +13,17 @@
 #include <SDL.h>
 #include <wolf3d.h>
 
-void	ft_set_draw_color(SDL_Renderer *r, t_ray ray)
+Uint32	ft_get_draw_color(t_ray ray)
 {
+	Uint32	color;
+
 	if (ray.dir.y > 0 && ray.where == 1)
-		SDL_SetRenderDrawColor(r, 23, 114, 47, 255);
+		color = 0xCC6600;
 	else if (ray.dir.y <= 0 && ray.where == 1)
-		SDL_SetRenderDrawColor(r, 205, 208, 24, 255);
+		color = 0x6600FF;
 	else if (ray.dir.x <= 0 && ray.where == 0)
-		SDL_SetRenderDrawColor(r, 236, 138, 18, 255);
+		color = 0x5CBD5C;	
 	else
-		SDL_SetRenderDrawColor(r, 92, 6, 162, 255);
+		color = 0xFF6600;
+	return (color);
 }
