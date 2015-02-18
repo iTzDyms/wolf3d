@@ -22,6 +22,7 @@ SDL2_INCLUDES_PATH := ./SDL2/include/SDL2
 
 LDFLAGS := -lSDL2
 LIBFTFLAGS := -lft
+LIBMATHFLAGS := -lm
 
 LIBFT := $(LIBFT_PATH)/libft.a
 
@@ -50,7 +51,7 @@ $(LIBFT):
 	@echo ""
 
 $(NAME): $(SDL2_PATH)/$(lSDL2) $(LIBFT) $(OBJ_PATH) $(POBJ)
-	@($(CC) -o $@ -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(POBJ))
+	@($(CC) -o $@ $(POBJ) -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS))
 	@echo "\nLinking "$@
 
 clean:	
