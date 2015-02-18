@@ -33,21 +33,9 @@ static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 static	void	ft_render(SDL_Renderer *r, t_map *map, t_player *pdata,
 	   t_text text)
 {
-//	SDL_Rect	rect;
-
-//	rect.x = 0;
-//	rect.y = PROJ_HEIGHT / 2;
-//	rect.w = PROJ_WIDTH;
-//	rect.h = PROJ_HEIGHT / 2;
-//	SDL_SetRenderDrawColor(r, 0, 255, 255, 255);
-//	ft_draw_rectangle(r, 0, PROJ_WIDTH - 1, 0, PROJ_HEIGHT / 2 - 1);
-//	SDL_RenderClear(r);
-//	SDL_SetRenderDrawColor(r, 81, 86, 90, 255);
-//	ft_draw_rectangle(r, 0, PROJ_WIDTH - 1, PROJ_HEIGHT / 2 , PROJ_HEIGHT - 1);	
-//	SDL_RenderFillRect(r, &rect);
 	ft_apply_sky_text(r, pdata, text);
 	ft_apply_floor_text(r, pdata, text);
-//	ft_apply_wall_text(r, pdata);
+//	ft_apply_wall_text(r, pdata, map, text);
 	ft_draw_renderer(pdata, map, r);
 	SDL_RenderPresent(r);
 }

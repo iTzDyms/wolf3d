@@ -27,8 +27,8 @@ static	void	ft_draw_render_line(int i, double perpwalldis, SDL_Renderer *r)
 	drawend = lineheight / 2 + PROJ_HEIGHT / 2;
 	if (drawend >= PROJ_HEIGHT)
 		drawend = PROJ_HEIGHT - 1;
-	ft_draw_line(r, i, drawstart, drawend);
-	//SDL_RenderDrawLine(r, i, drawstart, i, drawend);
+	//ft_draw_line(r, i, drawstart, drawend);
+	SDL_RenderDrawLine(r, i, drawstart, i, drawend);
 }
 
 void			ft_draw_renderer(t_player *pdata, t_map *map, SDL_Renderer *r)
