@@ -20,7 +20,8 @@
 # define W_TITLE "Wolf3D"
 # define DELAY 1000 / 60
 # define ROT 1.0
-# define SPEED 1.0
+# define SPEED 2.0
+# define HITBOX 10
 
 typedef	struct		s_screen
 {
@@ -78,7 +79,7 @@ t_player			ft_get_player(t_map *map);
 t_coord				set_player_pos(t_map *map);
 SDL_Window			*ft_createwin(char *title, int height, int width);
 void				ft_proceed(t_screen *screen, t_map *map, t_player *pdata);
-void				ft_move(t_player *pdata, SDL_Keycode sym, SDL_Keymod mod);
+void				ft_move(t_player *pdata, t_map *map, SDL_Keycode sym, SDL_Keymod mod);
 void				ft_rotate(t_player *pdata, SDL_Keycode sym, SDL_Keymod mod);
 t_ray				ft_get_ray(t_player *pdata, int i);
 t_ray				ft_dda(t_ray ray, t_map *map);

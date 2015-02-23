@@ -15,7 +15,8 @@
 #include <wolf3d.h>
 #include <libft.h>////////////
 
-static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
+static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata,
+								t_map *map)
 {
 	SDL_Keycode	sym;
 
@@ -27,7 +28,7 @@ static	void	ft_proceed_events(SDL_Event *event, int *quit, t_player *pdata)
 		if (sym == SDLK_RIGHT || sym == SDLK_LEFT)
 			ft_rotate(pdata, sym, event->key.keysym.mod);
 		else if (sym == SDLK_DOWN || sym == SDLK_UP)
-			ft_move(pdata, sym, event->key.keysym.mod);
+			ft_move(pdata, map, sym, event->key.keysym.mod);
 	}
 }
 
@@ -36,7 +37,8 @@ static	void	ft_apply_surf_to_render(SDL_Renderer *r, SDL_Surface *surface)
 	SDL_Texture *frame;
 
 	frame = SDL_CreateTextureFromSurface(r, surface);
-	SDL_RenderCopy(r, frame, NULL, NULL);	
+	SDL_RenderCopy(r, frame, NULL, NULL);
+	SDL_DestroyTexture(frame);		
 }
 
 void			ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
@@ -50,11 +52,10 @@ void			ft_proceed(t_screen *screen, t_map *map, t_player *pdata)
 	while (!quit)
 	{
 		ft_draw_surface(map, pdata, surface);
-		ft_putendl("drew surface");
 		ft_apply_surf_to_render(screen->r, surface);
 		SDL_RenderPresent(screen->r);
 //		SDL_Delay(DELAY);
 		while (SDL_PollEvent(&event))
-			ft_proceed_events(&event, &quit, pdata);
+			ft_proceed_events(&event, &quit, pdata, map);
 	}
 }
